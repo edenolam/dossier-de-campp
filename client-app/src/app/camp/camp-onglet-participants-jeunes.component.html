@@ -1,0 +1,134 @@
+<div class="container-fluid form-container">
+  <div class="row">
+
+    <div class="col-md-5">
+      <div class="adherents-table-container mat-elevation-z8">
+        <table mat-table matSort [dataSource]="adherentsDisponiblesTableDataSource">
+
+          <ng-container matColumnDef="selection">
+            <th mat-header-cell *matHeaderCellDef>
+              <mat-checkbox (change)="$event ? selectionnerTousAdherentsDisponibles() : null"
+                            [checked]="adherentsDisponiblesTableSelectionModel.hasValue() && isTousAdherentsDisponiblesSelectionnes()"
+                            [indeterminate]="adherentsDisponiblesTableSelectionModel.hasValue() && !isTousAdherentsDisponiblesSelectionnes()">
+              </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let row">
+              <mat-checkbox (click)="$event.stopPropagation()"
+                            (change)="$event ? adherentsDisponiblesTableSelectionModel.toggle(row) : null"
+                            [checked]="adherentsDisponiblesTableSelectionModel.isSelected(row)">
+              </mat-checkbox>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="numero">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+            <td mat-cell *matCellDef="let adherent"> {{adherent.numero}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="prenom">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Prénom </th>
+            <td mat-cell *matCellDef="let adherent"> {{adherent.prenom}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="nom">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom </th>
+            <td mat-cell *matCellDef="let adherent"> {{adherent.nom}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="adherentsDisponiblesTableDisplayedColumns; sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: adherentsDisponiblesTableDisplayedColumns;"
+              (click)="adherentsDisponiblesTableSelectionModel.toggle(row)"></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <button mat-raised-button color="primary" (click)="ajouterAdherentsDisponiblesSelectionnes()" [disabled]="isSaving">Ajouter =></button>
+      <button mat-raised-button color="primary" (click)="supprimerCampParticipantSelectionne()" [disabled]="isSaving"><= Supprimer</button>
+    </div>
+
+    <div class="col-md-5">
+      <div class="adherents-table-container mat-elevation-z8">
+        <table mat-table [dataSource]="campParticipantsTableDataSource">
+
+          <ng-container matColumnDef="numero">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let control"> {{control.get('adherent').value.numero}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="prenom">
+            <th mat-header-cell *matHeaderCellDef> Prénom </th>
+            <td mat-cell *matCellDef="let control"> {{control.get('adherent').value.prenom}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="nom">
+            <th mat-header-cell *matHeaderCellDef> Nom </th>
+            <td mat-cell *matCellDef="let control"> {{control.get('adherent').value.nom}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="campParticipantsTableDisplayedColumns; sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: campParticipantsTableDisplayedColumns;"
+              (click)="selectionnerCampParticipant(row)" [class.table-active]="row === campParticipantSelectionneFormGroup"></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="campParticipantSelectionneFormGroup">
+    <div class="col-md">
+        <mat-card>
+          <div class="container-fluid">
+            <div class="row">
+
+              <div class="col-md">
+                <mat-form-field>
+                  <input matInput placeholder="Date de début de présence" [matDatepicker]="dateDebutPresenceDatepicker" [formControl]="campParticipantSelectionneFormGroup.get('dateDebutPresence')">
+                  <mat-datepicker-toggle matSuffix [for]="dateDebutPresenceDatepicker"></mat-datepicker-toggle>
+                  <mat-datepicker #dateDebutPresenceDatepicker></mat-datepicker>
+                </mat-form-field>
+              </div>
+
+              <div class="col-md">
+                <mat-form-field>
+                  <input matInput placeholder="Date de fin de présence" [matDatepicker]="dateFinPresenceDatepicker" [formControl]="campParticipantSelectionneFormGroup.get('dateFinPresence')">
+                  <mat-datepicker-toggle matSuffix [for]="dateFinPresenceDatepicker"></mat-datepicker-toggle>
+                  <mat-datepicker #dateFinPresenceDatepicker></mat-datepicker>
+                </mat-form-field>
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="col-md">
+                <mat-checkbox
+                  [formControl]="campParticipantSelectionneFormGroup.get('mossAccompagnementSpecifique')">Accompagnement spécifique</mat-checkbox>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md">
+                <mat-checkbox
+                  [formControl]="campParticipantSelectionneFormGroup.get('chefEquipe')">Chef d'équipe</mat-checkbox>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md">
+                <mat-form-field>
+                  <input matInput placeholder="Coordonnées parents" [formControl]="campParticipantSelectionneFormGroup.get('coordonneesParents')">
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </mat-card>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-md">
+      <button mat-raised-button color="primary" (click)="save()" [disabled]="isSaving">Enregistrer</button>
+    </div>
+
+  </div>
+</div>

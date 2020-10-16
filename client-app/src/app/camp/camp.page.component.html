@@ -1,0 +1,109 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md">
+
+      <mat-card>
+        <mat-card-title>dossier de camp</mat-card-title>
+        <mat-card-content>
+          <mat-tab-group animationDuration="0ms">
+            <mat-tab label="Informations generales">
+              <mat-grid-list cols="3" rowHeight="1:3">
+                <mat-grid-tile colspan="2">
+              <ddc-camp-onglet-informations-generales
+                [campContext]="campContext"
+              >
+              </ddc-camp-onglet-informations-generales>
+                </mat-grid-tile>
+                <mat-grid-tile colspan="1">
+                  <ddc-camp-discussion-sujet [campContext]="campContext" [codeModule]="'INFO_GENERALE'"></ddc-camp-discussion-sujet>
+                </mat-grid-tile>
+              </mat-grid-list>
+            </mat-tab>
+            <mat-tab label="Participants - Jeunes">
+              <mat-grid-list cols="3" rowHeight="1:3">
+                <mat-grid-tile colspan="2">
+              <ddc-camp-onglet-participants-jeunes
+                [campContext]="campContext"
+              >
+              </ddc-camp-onglet-participants-jeunes>
+                </mat-grid-tile>
+                <mat-grid-tile colspan="1">
+                  <ddc-camp-discussion-sujet [campContext]="campContext" [codeModule]="'INFO_GENERALE'"></ddc-camp-discussion-sujet>
+                </mat-grid-tile>
+              </mat-grid-list>
+            </mat-tab>
+
+
+            <mat-tab label="Projet pedagogique">
+              <mat-grid-list cols="3" rowHeight="1:3">
+                <mat-grid-tile colspan="2">
+                  <mat-card>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A alias amet corporis cum cupiditate
+                    dignissimos dolore fugit, illum impedit ipsa minus nam nisi perferendis possimus quibusdam reprehenderit
+                    ut veritatis vitae!
+                  </mat-card>
+                </mat-grid-tile>
+                <mat-grid-tile colspan="1">
+                  <ddc-camp-discussion-sujet [campContext]="campContext" [codeModule]="'PEDA'"></ddc-camp-discussion-sujet>
+                </mat-grid-tile>
+              </mat-grid-list>
+            </mat-tab>
+            <mat-tab label="Projet d'activités">
+              <mat-grid-list cols="3" rowHeight="1:3">
+                <mat-grid-tile colspan="2">
+                  <mat-card>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A alias amet corporis cum
+                    cupiditate
+                    dignissimos dolore fugit, illum impedit ipsa minus nam nisi perferendis possimus quibusdam
+                    reprehenderit
+                    ut veritatis vitae!
+                  </mat-card>
+                </mat-grid-tile>
+                <mat-grid-tile colspan="1">
+                  <ddc-camp-discussion-sujet></ddc-camp-discussion-sujet>
+                </mat-grid-tile>
+              </mat-grid-list>
+            </mat-tab>
+            <mat-tab label="Projet de fonctionnement">
+              <mat-grid-list cols="3" rowHeight="1:3">
+                <mat-grid-tile colspan="2">
+                  <mat-card>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A alias amet corporis cum
+                    cupiditate
+                    dignissimos dolore fugit, illum impedit ipsa minus nam nisi perferendis possimus quibusdam
+                    reprehenderit
+                    ut veritatis vitae!
+                  </mat-card>
+                </mat-grid-tile>
+                <mat-grid-tile colspan="1">
+                  <ddc-camp-discussion-sujet></ddc-camp-discussion-sujet>
+                </mat-grid-tile>
+              </mat-grid-list>
+            </mat-tab>
+            <mat-tab label="Methode scoute">
+              <mat-grid-list cols="3" rowHeight="1:3">
+                <mat-grid-tile colspan="2">
+                  <mat-card>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A alias amet corporis cum
+                    cupiditate
+                    dignissimos dolore fugit, illum impedit ipsa minus nam nisi perferendis possimus quibusdam
+                    reprehenderit
+                    ut veritatis vitae!
+                  </mat-card>
+                </mat-grid-tile>
+                <mat-grid-tile colspan="1">
+                  <ddc-camp-discussion-sujet></ddc-camp-discussion-sujet>
+                </mat-grid-tile>
+              </mat-grid-list>
+            </mat-tab>
+
+            <mat-tab label="Remarques">
+              <mat-grid-list cols="1" rowHeight="1:3">
+                <mat-grid-tile colspan="1">
+                  <ddc-camp-onglet-remarques [campContext]="campContext"></ddc-camp-onglet-remarques>
+                </mat-grid-tile>
+              </mat-grid-list>
+            </mat-tab>
+          </mat-tab-group>
+        </mat-card-content>
+      </mat-card>
+
+    </div>
+  </div>
+</div>

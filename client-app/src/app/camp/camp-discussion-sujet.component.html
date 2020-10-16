@@ -1,0 +1,11 @@
+<mat-card *ngIf="campsDiscussionSujet$ | async as campsDiscussionSujets">
+  <mat-card-title>Discussions</mat-card-title>
+  <mat-card-content *ngFor="let campDiscussionSujet of campsDiscussionSujets">
+    <ddc-camp-discussion-sujet-detail [sujet]="campDiscussionSujet"></ddc-camp-discussion-sujet-detail>
+  </mat-card-content>
+  <button mat-fab color="warn" (click)="ajouterRemarque()">
+    <mat-icon>add</mat-icon>
+  </button>
+</mat-card>
+
+

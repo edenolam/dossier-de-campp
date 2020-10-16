@@ -1,0 +1,20 @@
+jms_serializer:
+    visitors:
+        xml_serialization:
+            format_output: '%kernel.debug%'
+    handlers:
+        datetime:
+            default_format: 'Y-m-d\TH:i:s.vO' # Sérialization correcte des dates pour éviter l'erreur "Invalid datetime "2017-11-07T19:46:57.118Z", expected format Y-m-d\\TH:i:sP." merci à https://www.php.net/manual/fr/class.datetime.php , https://momentjs.com/docs/#/displaying/as-iso-string/ et https://stackoverflow.com/a/47161595/535203
+
+    property_naming:
+        id: 'jms_serializer.identical_property_naming_strategy'
+
+#    metadata:
+#        auto_detection: false
+#        directories:
+#            any-name:
+#                namespace_prefix: "My\\FooBundle"
+#                path: "@MyFooBundle/Resources/config/serializer"
+#            another-name:
+#                namespace_prefix: "My\\BarBundle"
+#                path: "@MyBarBundle/Resources/config/serializer"

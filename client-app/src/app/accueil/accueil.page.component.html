@@ -1,0 +1,82 @@
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-md">
+
+      <mat-card>
+        <mat-card-title>Mes camps</mat-card-title>
+        <mat-card-content>
+          <table mat-table [dataSource]="camps$ | async">
+            <ng-container matColumnDef="creeLe">
+              <th mat-header-cell *matHeaderCellDef> Créé le</th>
+              <td mat-cell *matCellDef="let camp"> {{camp.histoCreation?.dateHeureModification?.format('LL')}} </td>
+            </ng-container>
+            <ng-container matColumnDef="creePar">
+              <th mat-header-cell *matHeaderCellDef> Créé par</th>
+              <td mat-cell *matCellDef="let camp">
+                <ng-container *ngIf="camp.histoCreation?.adherent; let adherent">
+                  {{adherent?.prenom}} {{adherent?.nom}}
+                </ng-container>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="libelle">
+              <th mat-header-cell *matHeaderCellDef> Nom du camp</th>
+              <td mat-cell *matCellDef="let camp" routerLink="/camp/{{camp.id}}"> {{camp.libelle}} </td>
+            </ng-container>
+            <ng-container matColumnDef="typeDeCamp">
+              <th mat-header-cell *matHeaderCellDef> Type de camp</th>
+              <td mat-cell *matCellDef="let camp"> {{camp.typeCamp?.libelle}}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="mesCampsDisplayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: mesCampsDisplayedColumns;"></tr>
+          </table>
+        </mat-card-content>
+
+        <button mat-fab color="primary" routerLink="/camp/nouveau" (click)="onNewCamp">
+          <mat-icon>add</mat-icon>
+        </button>
+      </mat-card>
+    </div>
+
+    <div class="col-md">
+
+      <mat-card>
+        <mat-card-title>Mes Actions</mat-card-title>
+        <mat-card-content>
+
+        </mat-card-content>
+      </mat-card>
+
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col-md">
+
+      <mat-card>
+        <mat-card-title>Mes projets d'années</mat-card-title>
+        <mat-card-content>
+        </mat-card-content>
+        <button mat-fab color="primary">
+          <mat-icon>add</mat-icon>
+        </button>
+      </mat-card>
+
+    </div>
+
+    <div class="col-md">
+
+      <mat-card>
+        <mat-card-title>Mes notifications</mat-card-title>
+        <mat-card-content>
+        </mat-card-content>
+      </mat-card>
+
+    </div>
+
+  </div>
+
+</div>

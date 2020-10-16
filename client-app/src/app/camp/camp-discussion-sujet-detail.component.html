@@ -1,0 +1,25 @@
+<mat-card class="m-3">
+  <p>id : {{sujet.id}}</p>
+
+
+  <p class="d-flex justify-content-between">sujet : {{sujet.sujet}}
+    <span>  <mat-form-field appearance="outline" >
+      <input matInput placeholder="ajouter un sujet"/>
+    </mat-form-field></span>
+  </p>
+
+<!--  <p>code_module : {{sujet.code_module}}</p>-->
+
+<!--  <p>statut : {{sujet.statut}}</p>-->
+
+<!--  <p>date_heure_creation : {{sujet.date_heure_creation}}</p>-->
+
+
+  <button mat-flat-button color="warn" [disabled]="sujet.statut == 2" class="d-flex justify-content-between">
+    <mat-icon>close</mat-icon>
+    <span>cloturer</span>
+  </button>
+  <button mat-flat-button color="primary" [disabled]="sujet.statut == 2">
+    <span>valider</span>
+  </button>
+</mat-card>

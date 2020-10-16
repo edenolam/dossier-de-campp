@@ -1,0 +1,63 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md">
+      <div class="example-container">
+        <h2>Création du dossier de camp</h2>
+        <mat-form-field>
+          <mat-label>nom du dossier de camp</mat-label>
+          <input matInput placeholder="Nom du dossier" [formControl]="formGroup.get('libelle')">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>creation du dossier de camp</mat-label>
+          <mat-select placeholder="Selectionnez le type de camp" [formControl]="formGroup.get('typeCamp')"
+                      [(value)]="typeCamp">
+            <mat-option *ngFor="let typeCamp of typeCamps$ | async" [value]="typeCamp">{{typeCamp.libelle}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <h3>Camps accompagnés / groupés</h3>
+
+        <mat-radio-group aria-label="Select an option">
+          <mat-label>il s'agit d'un dossier de camp parent</mat-label>
+          <mat-radio-button value="1">non</mat-radio-button>
+          <mat-radio-button value="2">oui</mat-radio-button>
+        </mat-radio-group>
+
+        <mat-radio-group aria-label="Select an option">
+          <mat-label>il s'agit d'un dossier de camp enfant</mat-label>
+          <mat-radio-button value="1">non</mat-radio-button>
+          <mat-radio-button value="2">oui</mat-radio-button>
+        </mat-radio-group>
+
+        <h3>Camp marin et camp international</h3>
+
+        <mat-radio-group aria-label="Select an option">
+          <mat-label>Tout ou une partie de camp se deroule a l'etranger:</mat-label>
+          <mat-radio-button value="1">non</mat-radio-button>
+          <mat-radio-button value="2">oui</mat-radio-button>
+        </mat-radio-group>
+
+        <mat-radio-group aria-label="Select an option">
+          <mat-label>Des activitées marines sont prevues durant le camp</mat-label>
+          <mat-radio-button value="1">non</mat-radio-button>
+          <mat-radio-button value="2">oui</mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+
+    <div class="col-md">
+      <div *ngIf="modules">
+        <h2>Selectionner les modules de mon dossier de camp {{typeCamp.libelle}}</h2>
+        <mat-list>
+          <mat-list-item *ngFor="let moduleControl of modulesFormGroups;">
+            <mat-checkbox
+              [formControl]="moduleControl.get('isChecked')">{{moduleControl.getRawValue().module.module.libelle}}</mat-checkbox>
+          </mat-list-item>
+        </mat-list>
+        <button mat-flat-button color="primary" (click)="enregistrer()">Enregistrer <i class="material-icons">face</i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>

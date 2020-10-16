@@ -1,0 +1,44 @@
+version: '2.2'
+
+services:
+  api-server:
+    container_name: ddc-api-server
+    build:
+      context: ./api-server
+    ports:
+      - "8000:8000"
+    working_dir: /api-server
+    command: bash -x -c 'composer install && symfony server:start --no-tls'
+    volumes:
+      - ../api-server:/api-server:cached
+      - ./data/.symfony:/.symfony
+    user: ${USER_ID}:${USER_GID}
+  db:
+    container_name: ddc-db
+    image: postgres:12-alpine
+    environment:
+      - POSTGRES_PASSWORD=ddc
+      - POSTGRES_USER=ddc
+      - POSTGRES_DB=ddc
+      - LANG=fr_FR.utf8
+    ports:
+      - "15432:5432"
+    volumes:
+      - ./data/postgresql:/var/lib/postgresql/data
+      - ./db/init-db.sh:/docker-entrypoint-initdb.d/init-db.sh
+      - ../api-server/database:/tmp/initdb-sql
+  client-app:
+    container_name: ddc-client-app
+    image: node:12-alpine
+    user: ${USER_ID}:${USER_GID}
+    ports:
+      - "4200:4200"
+    working_dir: /client-app
+    command: sh -x -c 'yarn install && yarn start --host 0.0.0.0'
+    volumes:
+      - ../client-app:/client-app
+      - ${HOME}/.yarn:/.yarn
+      - ${HOME}/.cache/yarn:/.cache/yarn
+      - ${HOME}/.yarnrc:/.yarnrc
+
+# FIXME ajouter le container client-app et le fake-ws + maildev ?

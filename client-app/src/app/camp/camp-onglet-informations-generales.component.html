@@ -1,0 +1,39 @@
+<div class="container-fluid form-container">
+  <div class="row">
+    <div class="col-md">
+
+      <mat-form-field>
+        <input matInput placeholder="Nom du camp" [formControl]="campForm.get('libelle')">
+      </mat-form-field>
+
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-md">
+      <mat-form-field>
+        <input matInput placeholder="Date de début du camp" [matDatepicker]="dateDebutDatepicker" [formControl]="campForm.get('dateDebut')">
+        <mat-datepicker-toggle matSuffix [for]="dateDebutDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #dateDebutDatepicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="col-md">
+      <mat-form-field>
+        <input matInput placeholder="Date de fin du camp" [matDatepicker]="dateFinDatepicker" [formControl]="campForm.get('dateFin')">
+        <mat-datepicker-toggle matSuffix [for]="dateFinDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #dateFinDatepicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col-md">
+      <button mat-raised-button color="primary" (click)="save()" [disabled]="isSaving">Enregistrer</button>
+    </div>
+
+  </div>
+</div>
